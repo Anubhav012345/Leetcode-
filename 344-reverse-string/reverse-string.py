@@ -3,8 +3,10 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        stack=[]
-        for j in s:
-            stack.append(j)
-        for i in range(len(s)):
-            s[i]=stack.pop()
+        # stack=[]
+        # for char in s:
+        #     stack.append(char)
+        # for i in range(len(s)):
+        #     s[i]=stack.pop()
+
+        return s.reverse()
