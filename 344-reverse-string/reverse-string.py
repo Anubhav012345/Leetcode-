@@ -1,12 +1,12 @@
 class Solution:
     def reverseString(self, s: List[str]) -> None:
-        """
-        Do not return anything, modify s in-place instead.
-        """
-        # stack=[]
-        # for char in s:
-        #     stack.append(char)
-        # for i in range(len(s)):
-        #     s[i]=stack.pop()
-
-        return s.reverse()
+        left=0
+        right=len(s)-1
+        self.func(s,left,right)
+        
+    def func(self,s,left,right):
+        if left>=right:
+            return
+        s[left],s[right]=s[right],s[left]
+        self.func(s,left+1,right-1)
+        
