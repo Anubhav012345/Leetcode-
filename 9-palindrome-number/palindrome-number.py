@@ -1,17 +1,18 @@
 class Solution:
-    def isPalindrome(self, x: int) -> bool:
-        sum=0
-        a=x
-        if x<0:
+    def func(self,x,left,right):
+        if(int(x)<0):
             return False
-        while x>0:
-            rev=x%10
-            sum=sum*10+rev
-            x=x//10
-        if(sum==a):
+        if(left>=right):
             return True
-        else:
+        if(x[left]!=x[right]):
             return False
+        return self.func(x,left+1,right-1)
+    def isPalindrome(self, x: int) -> bool:
+        x=str(x)
+        left=0
+        right=len(x)-1
+        return self.func(x,left,right)
+
 
 
         
