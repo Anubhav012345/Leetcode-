@@ -20,11 +20,20 @@ class Solution:
     #         right-=1
 
     # Approach 2nd
+        # n=len(nums)
+        # rotations=k%n
+        # j=n-rotations
+        # nums[:]=nums[j:n]+nums[0:j]
+        # return nums
+    
+    
+    # Approach 3rd
         n=len(nums)
         rotations=k%n
-        j=n-rotations
-        nums[:]=nums[j:n]+nums[0:j]
+        for _ in range(0,rotations):
+            e=nums.pop()
+            nums.insert(0,e)
         return nums
-    
+
 
         
