@@ -8,15 +8,16 @@ class Solution:
                 lst.append(nums[i])
             else:
                 lst1.append(nums[i])
-        # merged=[]
-        # for i,j in zip(lst,lst1):
-        #     merged.append(lst)
-        #     merged.append(lst1)
-        # merged = [x for pair in zip(lst, lst1) for x in pair]
-        for i in range(len(lst)):
-            res.append(lst[i])
-            res.append(lst1[i])
-        return res
+        merged=[]
+        for i,j in zip(lst,lst1):
+            merged.append(lst)
+            merged.append(lst1)
+        merged = [x for pair in zip(lst, lst1) for x in pair]
+        return merged
+        # for i in range(len(lst)):
+        #     res.append(lst[i])
+        #     res.append(lst1[i])
+        # return res
 __import__("atexit").register(lambda: open("display_runtime.txt","w").write("0"))
 
 
