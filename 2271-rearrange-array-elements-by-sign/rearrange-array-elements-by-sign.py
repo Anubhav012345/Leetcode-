@@ -1,24 +1,17 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        lst=[]
-        lst1=[]
-        res=[]
+        n=len(nums)
+        lst=[0]*n
+        pos=0
+        neg=1
         for i in range(len(nums)):
             if(nums[i]>0):
-                lst.append(nums[i])
+                lst[pos]=nums[i]
+                pos+=2
             else:
-                lst1.append(nums[i])
-        merged=[]
-        for i,j in zip(lst,lst1):
-            merged.append(lst)
-            merged.append(lst1)
-        merged = [x for pair in zip(lst, lst1) for x in pair]
-        return merged
-        # for i in range(len(lst)):
-        #     res.append(lst[i])
-        #     res.append(lst1[i])
-        # return res
-__import__("atexit").register(lambda: open("display_runtime.txt","w").write("0"))
+                lst[neg]=nums[i]
+                neg+=2
+        return lst
 
 
 
