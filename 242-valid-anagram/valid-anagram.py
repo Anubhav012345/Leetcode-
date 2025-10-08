@@ -1,16 +1,17 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s=list(s)
-        t=list(t)
-        s.sort()
-        t.sort()
-        if(len(s)!=len(t)):
+        if len(s)!=len(t):
             return False
-        for i in range(0,len(s)):
-            if s[i]!=t[i]:
+        hash_map={}
+        for c in s:
+            hash_map[c]=hash_map.get(c,0)+1
+        for c in t:
+            if c not in hash_map:
+                return False
+            hash_map[c]-=1
+            if hash_map[c]<0:
                 return False
         return True
-                
 
 
             
