@@ -1,25 +1,12 @@
 class Solution:
     def scoreBalance(self, s: str) -> bool:
         s = s.lower().strip()
-        n = len(s)
+        total = sum(ord(ch) - 97 + 1 for ch in s)
+        left_sum = 0
 
-        for k in range(1, n):  
-            string1 = s[:k]
-            string2 = s[k:]
-
-            sum1 = 0
-            for i in range(len(string1)):
-                ascii_val = ord(string1[i])
-                score1 = ascii_val - 97 + 1   
-                sum1 += score1
-
-            sum2 = 0
-            for j in range(len(string2)):
-                ascii_value1 = ord(string2[j])
-                score2 = ascii_value1 - 97 + 1   
-                sum2 += score2
-
-            if sum1 == sum2:
+        for i in range(len(s)):
+            left_sum += ord(s[i]) - 97 + 1
+            right_sum = total - left_sum
+            if left_sum == right_sum:
                 return True
-
         return False
