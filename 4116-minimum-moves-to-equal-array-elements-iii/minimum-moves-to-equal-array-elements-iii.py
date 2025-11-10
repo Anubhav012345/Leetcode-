@@ -1,9 +1,8 @@
 class Solution:
     def minMoves(self, nums: List[int]) -> int:
-        maxi=max(nums)
-        result=0
-        for i in range(len(nums)):
-            ans=maxi-nums[i]
-            result+=ans
-        return result
+        nums.sort()
+        ans=0
+        for x in nums:
+            ans+=nums[-1]-x
+        return ans
         
