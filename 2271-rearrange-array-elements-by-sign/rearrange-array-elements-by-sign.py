@@ -1,21 +1,17 @@
-__import__("atexit").register(lambda: open("display_runtime.txt","w").write("0"))
-
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        n=len(nums)
-        lst=[0]*n
-        pos=0
-        neg=1
-        for i in range(len(nums)):
-            if(nums[i]>0):
-                lst[pos]=nums[i]
-                pos+=2
+        pos=[]
+        neg=[]
+        for num in nums:
+            if num<0:
+                neg.append(num)
             else:
-                lst[neg]=nums[i]
-                neg+=2
-        return lst
-
-
-
-
-        
+                pos.append(num)
+        i=j=0
+        ans=[]
+        while i<len(pos) and j<len(neg):
+            ans.append(pos[i])
+            ans.append(neg[j])
+            i += 1
+            j += 1
+        return ans
