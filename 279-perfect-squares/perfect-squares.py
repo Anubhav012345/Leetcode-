@@ -1,17 +1,11 @@
 class Solution:
     def numSquares(self, n: int) -> int:
-        memo={}
-        def solve(n):
-            if n==0:
-                return 0
-            if n in memo:
-                return memo[n]
-            ans=float("inf")
+        dp=[float("inf")]*(n+1)
+        dp[0]=0
+        for x in range(1,n+1):
             i=1
-            while(i*i<=n):
-                ans=min(ans,1+solve(n-(i*i)))
+            while(i*i<=x):
+                dp[x]=min(dp[x],1+dp[x-(i*i)])
                 i+=1
-            memo[n]=ans
-            return ans
-        return solve(n)
+        return dp[n]
         
