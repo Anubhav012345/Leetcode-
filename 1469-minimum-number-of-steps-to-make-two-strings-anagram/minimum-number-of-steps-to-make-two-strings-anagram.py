@@ -9,14 +9,8 @@ class Solution:
             hash_map1[t[j]]=hash_map1.get(t[j],0)+1
         
         ans=0
-        for key1,value1 in hash_map.items():
-            for key,value in hash_map1.items():
-                if(key1==key):
-                    if(value1>value):
-                        ans+=(value1-value)
-                    break
-            else:
-                ans+=value1
+        for key,value in hash_map.items():
+            ans+=max(0,value-hash_map1.get(key,0))
         return ans
 
 
