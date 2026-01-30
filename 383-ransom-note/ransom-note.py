@@ -1,15 +1,15 @@
-from collections import Counter
-
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        # If ransomNote is longer, construction is impossible
-        if len(ransomNote) > len(magazine):
-            return False
+        hash_map={}
+        for i in range(len(magazine)):
+            hash_map[magazine[i]]=hash_map.get(magazine[i],0)+1
 
-        need = Counter(ransomNote)
-        have = Counter(magazine)
-
-        for ch, cnt in need.items():
-            if cnt > have[ch]:          # not enough of this letter
+        for ch in ransomNote:
+            if hash_map.get(ch,0)==0:
                 return False
+            hash_map[ch]-=1
+        
         return True
+
+
+        
