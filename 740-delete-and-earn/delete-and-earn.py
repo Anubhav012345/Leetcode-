@@ -5,17 +5,9 @@ class Solution:
         freq=[0]*(max_value+1)
         for num in nums:
             freq[num] += num
-        memo={}
+        dp=[0]*(max_value+1)
 
-        def solve(i):
-            if(i>max_value):
-                return 0
-            if(i in memo):
-                return memo[i]
-            skip=solve(i+1)
-            take=freq[i]+solve(i+2)
-            memo[i]=max(skip,take)
-
-            return max(skip,take)
+        for i in range(max_value+1):
+            dp[i]=max(dp[i-1],freq[i]+dp[i-2])
         
-        return solve(1)
+        return max(dp)
