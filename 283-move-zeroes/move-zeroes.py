@@ -4,10 +4,15 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         lst=[]
-        i=0
-        while i<len(nums):
+
+        for i in range(len(nums)):
             if(nums[i]!=0):
-                i+=1
-            else:
-                lst.append(nums.pop(i))
-        return(nums.extend(lst))
+                lst.append(nums[i])
+
+        n=len(nums)
+        m=len(lst)
+        for i in range(m,n):
+            lst.append(0)    
+        
+        for i in range(n):
+            nums[i]=lst[i]
