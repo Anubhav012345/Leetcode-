@@ -5,23 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def validate (self, root, low, high):
+        if root is None:
+            return True
+        if root.val<=low or root.val>=high:
+            return False
+        else:
+            return self.validate(root.left,low,root.val) and self.validate(root.right,root.val,high)
+        
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        lst=[]
-
-        def inorder(node):
-            if node is None:
-                return 
-            inorder(node.left)    
-            lst.append(node.val)
-            inorder(node.right)
-        
-        inorder(root)
-
-        for i in range(1,len(lst)):
-            if(lst[i]<=lst[i-1]):
-                return False
-        return True
-
-
-    
-        
+        return self.validate(root,-math.inf,math.inf)
