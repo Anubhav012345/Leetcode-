@@ -1,3 +1,17 @@
 class Solution:
-    def furthestDistanceFromOrigin(self, m: str) -> int:
-        return m.count('_') + abs(m.count('R') - m.count('L'))
+    def furthestDistanceFromOrigin(self, moves: str) -> int:
+        l = moves.count("L")
+        r = moves.count("R")
+        d = moves.count("_")
+        answer = 0
+        
+        if l>r:
+            answer = -(l+d) + r
+        else:
+            answer = (r+d) -l
+        
+        return abs(answer)
+            
+
+
+        
