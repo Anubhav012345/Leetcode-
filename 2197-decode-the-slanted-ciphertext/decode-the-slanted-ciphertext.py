@@ -1,16 +1,6 @@
 class Solution:
     def decodeCiphertext(self, s: str, rows: int) -> str:
-        if not s:
+        if rows == 1:
             return s
-
-        cols = math.ceil(len(s) / rows)
-        res = []
-
-        for start in range(cols):
-            r, c = 0, start
-            while r < rows and c < cols:
-                res.append(s[r * cols + c])
-                r += 1
-                c += 1
-
-        return ''.join(res).rstrip()
+        columns = len(s)//rows
+        return "".join([s[i::columns+1] for i in range(columns)]).rstrip()
