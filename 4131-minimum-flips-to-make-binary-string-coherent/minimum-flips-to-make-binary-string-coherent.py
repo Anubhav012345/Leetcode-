@@ -1,15 +1,22 @@
 class Solution:
     def minFlips(self, s: str) -> int:
-        f = [0, 0]
-
-        for c in s:
-            f[int(c)] += 1
-
-        if not f[0] or not f[1]:
+        n = len(s)
+        if n == 0:
             return 0
 
-        return min(
-            f[0],
-            f[1] - (int(s[0]) and int(s[-1])) - 1
-        )
-        
+        c = s.count('1')
+
+        ans = c
+
+        ans = min(ans, n - c)
+
+        if c>0:
+            ans = min(ans, c - 1)
+
+        if n>2:
+            i_f = 1 if s[0] == '1' else 0
+            i_l = 1 if s[n-1] == '1' else 0
+            cc = c + 2 - 2*(i_f + i_l)
+            ans = min(ans, cc)
+
+        return ans
