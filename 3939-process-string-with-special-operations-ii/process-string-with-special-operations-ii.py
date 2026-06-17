@@ -1,30 +1,37 @@
 class Solution:
     def processStr(self, s: str, k: int) -> str:
-        n = len(s)
-        ln = 0
-
+        # First pass, identify the final length of the string
+        l = 0
         for c in s:
             if c == '*':
-                ln = max(ln - 1, 0)
+                if l > 0:
+                    l -= 1
             elif c == '#':
-                ln *= 2
-            elif c != '%':
-                ln += 1
+                l *= 2
+            elif c == '%':
+                pass
+            else:
+                l += 1
 
-        if k >= ln:
+        # We must be looking for position 'k' within the length 'l',
+        # otherwise return undefined char
+        if k >= l:
             return '.'
 
-        for i in range(n - 1, -1, -1):
-            c = s[i]
+        # Second pass: Update `k`, and `l` which dynamically tracks
+        # the length of the string while backtracking.
+        ptr = k
+        for c in s[::-1]:
             if c == '*':
-                ln += 1
+                l += 1
             elif c == '#':
-                if k >= ln // 2:
-                    k -= ln // 2
-                ln //= 2
+                if ptr >= l // 2:
+                    ptr -= l // 2
+                l = l // 2
             elif c == '%':
-                k = ln - 1 - k
+                ptr = (l - 1) - ptr
             else:
-                if ln == k + 1:
+                if l == ptr + 1:
                     return c
-                ln -= 1
+                l -= 1
+        return s[ptr]
