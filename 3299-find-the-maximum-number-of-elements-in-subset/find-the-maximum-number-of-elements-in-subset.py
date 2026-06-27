@@ -1,26 +1,20 @@
-from typing import List
-
 class Solution:
     def maximumLength(self, nums: List[int]) -> int:
-        h = {}
+        count = Counter(nums)
 
-        for num in nums:
-            h[num] = h.get(num, 0) + 1
+        res = 0
+        for key in count.keys():
+            if key == 1:
+                total = count[key] if count[key] % 2 else count[key] - 1
+            else:
+                total = 0
 
-        ones = h.get(1, 0)
-
-        op = ones if ones % 2 else ones - 1
-
-        h.pop(1, None)
-
-        for num in h:
-            tmp = 0
-            x = num
-
-            while x in h and h[x] > 1:
-                tmp += 2
-                x *= x
-
-            op = max(op, tmp + (1 if x in h else -1))
-
-        return op
+                while count[key] >= 2 and key * key in count:
+                    total += 2
+                    key = key * key
+                
+                total += 1
+            
+            res = max(res, total)
+        
+        return res
